@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Helpers;
 using Core.Interface;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,8 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IProductRepositry,ProductRepository>();
+            services.AddScoped(typeof(IGenericRepostorty<>),(typeof(GenericRepostory<>)));
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
             services.AddDbContext<StoreContext>(x =>
                x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
