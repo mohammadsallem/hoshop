@@ -13,7 +13,7 @@ namespace Infrastructure.Data
            
            if( spec.Critiria != null){
                query = query.Where(spec.Critiria);
-           }
+             }
            
            query = spec.Includes.Aggregate(query ,( current , include ) => current.Include(include));
 
